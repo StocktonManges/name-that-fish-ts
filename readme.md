@@ -57,4 +57,4 @@ To get this project setup, you should:
 - [ ] Keep all constants (variables that do not change over time) outside of components
 - [ ] Form must reset after submitting
 - [ ] Page must NOT reload after submitting
-- [ ] ClassApp Code and FunctionalApp Code should be treated as seperate apps as far as state goes
+- [ ] ClassApp Code and FunctionalApp Code should be treated as separate apps as far as state goes

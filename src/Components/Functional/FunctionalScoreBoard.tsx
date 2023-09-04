@@ -1,22 +1,29 @@
 import "./styles/score-board.css";
-//  Where the score is presented
+import { fishProps, scoreProps } from "./FunctionalApp";
 
-const incorrectCount = 0;
-const correctCount = 0;
-const answersLeft = ["trout", "salmon", "tuna", "shark"];
-
-export function FunctionalScoreBoard() {
+export function FunctionalScoreBoard({
+  parentScore,
+  fishes,
+}: {
+  parentScore: scoreProps;
+  fishes: fishProps;
+}) {
+  const totalGuesses = parentScore.correct + parentScore.incorrect;
   return (
     <div id="score-board">
-      <div>Incorrect 🔻: {incorrectCount}</div>
+      <div>Incorrect 🔻: {parentScore.incorrect}</div>
       <div id="choices-left">
-        {answersLeft.map((answer) => (
-          <div key={answer} className="choice">
-            {answer}
-          </div>
-        ))}
+        {fishes.map((answer, index) => {
+          if (index >= totalGuesses) {
+            return (
+              <div key={answer.name} className="choice">
+                {answer.name}
+              </div>
+            );
+          }
+        })}
       </div>
-      <div>Correct ✅: {correctCount}</div>
+      <div>Correct ✅: {parentScore.correct}</div>
     </div>
   );
 }
