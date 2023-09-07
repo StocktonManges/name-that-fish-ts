@@ -1,46 +1,35 @@
 import "./styles/game-board.css";
 import { useState } from "react";
-import updateScore from "./FunctionalUtils";
-import { fishProps, scoreProps } from "./FunctionalApp";
+
+type fishItem = { name: string; url: string };
 
 export function FunctionalGameBoard({
-  parentScore,
-  setParentScore,
-  fishes,
+  currentFish,
+  updateScore,
 }: {
-  parentScore: scoreProps;
-  setParentScore: (value: React.SetStateAction<scoreProps>) => void;
-  fishes: fishProps;
+  currentFish: fishItem;
+  updateScore: (guess: string) => void;
 }) {
-  const totalGuesses = parentScore.correct + parentScore.incorrect;
-  const nextFishToName = fishes[totalGuesses];
   const [guessInput, setGuessInput] = useState("");
+  const onSubmitFunction = (e: React.FormEvent) => {
+    e.preventDefault();
+    updateScore(guessInput);
+    setGuessInput("");
+  };
 
   return (
     <div id="game-board">
       <div id="fish-container">
-        <img src={nextFishToName.url} alt={nextFishToName.name} />
+        <img src={currentFish.url} alt={currentFish.name} />
       </div>
-      <form
-        id="fish-guess-form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          updateScore(
-            guessInput,
-            nextFishToName.name,
-            parentScore,
-            setParentScore
-          );
-          setGuessInput("");
-        }}
-      >
+      <form id="fish-guess-form" onSubmit={onSubmitFunction}>
         <label htmlFor="fish-guess">What kind of fish is this?</label>
         <input
           type="text"
           name="fish-guess"
           value={guessInput}
           onChange={(e) => {
-            setGuessInput(e.target.value.toLowerCase());
+            setGuessInput(e.target.value.toLowerCase().replace(/\s+/g, ""));
           }}
         />
         <input type="submit" />

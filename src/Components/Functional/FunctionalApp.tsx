@@ -9,8 +9,6 @@ export type scoreProps = {
   incorrect: number;
 };
 
-export type fishProps = { name: string; url: string }[];
-
 const initialFishes = [
   {
     name: "trout",
@@ -36,17 +34,27 @@ export function FunctionalApp() {
     incorrect: 0,
   });
   const totalGuesses = score.correct + score.incorrect;
+  const currentFish = initialFishes[totalGuesses];
+  const answersLeft = initialFishes
+    .slice(totalGuesses)
+    .map((fish) => fish.name);
+
+  const updateScore = (guess: string) => {
+    const arr = currentFish.name === guess ? [1, 0] : [0, 1];
+    setScore({
+      correct: score.correct + arr[0],
+      incorrect: score.incorrect + arr[1],
+    });
+  };
+
   return (
     <>
       {(totalGuesses < 4 && (
         <>
-          <FunctionalScoreBoard parentScore={score} fishes={initialFishes} />
+          <FunctionalScoreBoard parentScore={score} answersLeft={answersLeft} />
           <FunctionalGameBoard
-            setParentScore={(value) => {
-              setScore(value);
-            }}
-            parentScore={score}
-            fishes={initialFishes}
+            currentFish={currentFish}
+            updateScore={updateScore}
           />
         </>
       )) || <FunctionalFinalScore parentScore={score} />}
