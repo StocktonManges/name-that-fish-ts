@@ -1,7 +1,11 @@
 import { Component } from "react";
 import { scoreProps } from "./ClassApp";
 
-export class ClassFinalScore extends Component<{ parentScore: scoreProps }> {
+type ClassFinalScoreProps = {
+  parentScore: scoreProps;
+};
+
+export class ClassFinalScore extends Component<ClassFinalScoreProps> {
   render() {
     return (
       <div id="final-score">

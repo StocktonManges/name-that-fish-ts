@@ -50,7 +50,7 @@ export class ClassApp extends Component {
     };
     return (
       <>
-        {(totalGuesses < 4 && (
+        {(totalGuesses < initialFishes.length && (
           <>
             <ClassScoreBoard
               parentScore={this.state}

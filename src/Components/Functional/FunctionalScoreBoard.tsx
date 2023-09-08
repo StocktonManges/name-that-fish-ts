@@ -1,13 +1,15 @@
 import "./styles/score-board.css";
 import { scoreProps } from "./FunctionalApp";
 
+type FunctionalScoreBoardProps = {
+  parentScore: scoreProps;
+  answersLeft: string[];
+};
+
 export function FunctionalScoreBoard({
   parentScore,
   answersLeft,
-}: {
-  parentScore: scoreProps;
-  answersLeft: string[];
-}) {
+}: FunctionalScoreBoardProps) {
   return (
     <div id="score-board">
       <div>Incorrect 🔻: {parentScore.incorrect}</div>

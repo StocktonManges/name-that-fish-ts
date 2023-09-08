@@ -2,10 +2,12 @@ import { Component } from "react";
 import "./styles/score-board.css";
 import { scoreProps } from "./ClassApp";
 
-export class ClassScoreBoard extends Component<{
+type ClassScoreBoardProps = {
   parentScore: scoreProps;
   answersLeft: string[];
-}> {
+};
+
+export class ClassScoreBoard extends Component<ClassScoreBoardProps> {
   render() {
     const { correct, incorrect } = this.props.parentScore;
     return (

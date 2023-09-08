@@ -1,12 +1,12 @@
 import { Component } from "react";
 import "./styles/game-board.css";
 
-type fishItem = { name: string; url: string };
-
-export class ClassGameBoard extends Component<{
+type ClassGameBoardProps = {
   updateScore: (guess: string) => void;
-  currentFish: fishItem;
-}> {
+  currentFish: { name: string; url: string };
+};
+
+export class ClassGameBoard extends Component<ClassGameBoardProps> {
   state = {
     guessInput: "",
   };

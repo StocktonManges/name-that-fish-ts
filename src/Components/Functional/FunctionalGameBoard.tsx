@@ -1,15 +1,15 @@
 import "./styles/game-board.css";
 import { useState } from "react";
 
-type fishItem = { name: string; url: string };
+type FunctionalGameBoardProps = {
+  currentFish: { name: string; url: string };
+  updateScore: (guess: string) => void;
+};
 
 export function FunctionalGameBoard({
   currentFish,
   updateScore,
-}: {
-  currentFish: fishItem;
-  updateScore: (guess: string) => void;
-}) {
+}: FunctionalGameBoardProps) {
   const [guessInput, setGuessInput] = useState("");
   const onSubmitFunction = (e: React.FormEvent) => {
     e.preventDefault();

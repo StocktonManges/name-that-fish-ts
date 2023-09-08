@@ -49,7 +49,7 @@ export function FunctionalApp() {
 
   return (
     <>
-      {(totalGuesses < 4 && (
+      {(totalGuesses < initialFishes.length && (
         <>
           <FunctionalScoreBoard parentScore={score} answersLeft={answersLeft} />
           <FunctionalGameBoard
